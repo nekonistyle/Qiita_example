@@ -143,7 +143,7 @@ Section Perm_ind.
     - rewrite inE negb_or =>/and3P[/andP[Hba _] _ _] H y.
       case : ifP Hba (H y) =>[/eqP->|]//. by case : ifP.
   Qed.
-
+(*
   Variable (P Q:seq T -> seq T -> Prop).
 
   Goal forall s t, perm_eq s t -> P s t -> Q s t.
