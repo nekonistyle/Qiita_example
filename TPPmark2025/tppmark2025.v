@@ -276,7 +276,7 @@ Section Tppmark.
   Proof. apply /ffunP => x. by rewrite !ffunE. Qed.
 
   Lemma state2vec_switch (s:seq nat) (c:surface s) (t:state s):
-    state2vec (switch c t) = (state2vec t + state2vec (surface2state c))%R.
+                           state2vec (switch c t) = (state2vec t + surface2vec c)%R.
   Proof.
     case : c =>[k c]. rewrite /switch/surface2state/=/state2vec -exp2v_additive.
     congr(exp2v _). apply /ffunP => x. rewrite !ffunE.
@@ -288,7 +288,7 @@ Section Tppmark.
 
   Lemma state2vec_execute (s:seq nat) (p:seq (surface s)) (init:state s):
     state2vec (execute p init) =
-    (\sum_(c <- p) state2vec (surface2state c) + state2vec init)%R.
+                           (\sum_(c <- p) surface2vec c + state2vec init)%R.
   Proof.
     elim : p =>[|c p IH]/=; [by rewrite big_nil add0r|].
       by rewrite state2vec_switch big_cons IH addrC addrA.
