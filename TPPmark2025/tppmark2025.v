@@ -165,9 +165,7 @@ Section Vector.
 
   Lemma dim_free (r:seq vT): free r -> \dim <<r>>%VS = size r.
   Proof.
-    rewrite free_directv =>/andP[H /directvP]/=. rewrite span_def =>->.
-    rewrite (eq_big_seq (fun => 1)) ?sum1_size =>// i Hi. rewrite dim_vline.
-    have ->//: (i != 0%R). apply /eqP => Hi0. by move : Hi0 Hi H =>->->.
+    by move =>/eqP.
   Qed.
 End Vector.
 
